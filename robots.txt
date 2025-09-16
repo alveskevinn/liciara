@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://www.draliciara.com.br/sitemap.xml
+Sitemap: https://www.liciaraalvesodontologia.com.br/sitemap.xml
 
 # Crawl-delay (opcional - 1 segundo entre requisições)
 Crawl-delay: 1

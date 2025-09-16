@@ -4,7 +4,7 @@
 # Opção 1: Redirecionar para www
 RewriteEngine On
 RewriteCond %{HTTP_HOST} ^draliciara\.com\.br [NC]
-RewriteRule ^(.*)$ https://www.draliciara.com.br/$1 [R=301,L]
+RewriteRule ^(.*)$ https://www.liciaraalvesodontologia.com.br/$1 [R=301,L]
 
 # Opção 2: Redirecionar para non-www (descomente se preferir)
 # RewriteEngine On
