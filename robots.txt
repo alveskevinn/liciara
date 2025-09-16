@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.draliciara.com.br/sitemap.xml
+
+# Crawl-delay (opcional - 1 segundo entre requisições)
+Crawl-delay: 1
+
+# Permitir acesso a recursos estáticos
+Allow: /public/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+
+# Bloquear arquivos desnecessários
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.log
+Disallow: /temp/
+Disallow: /cache/
