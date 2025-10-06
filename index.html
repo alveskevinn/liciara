@@ -278,6 +278,15 @@
             animation-play-state: paused;
         }
 
+        .gallery-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 20px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
         .carousel-track {
             display: flex;
             animation: scroll 20s linear infinite;
@@ -288,8 +297,8 @@
         }
 
         .gallery-item {
-            flex: 0 0 300px;
-            height: 300px;
+            flex: 0 0 400px;
+            height: 350px;
             border-radius: 12px;
             overflow: hidden;
             position: relative;
@@ -306,6 +315,10 @@
         /* Modal imagem - tamanho responsivo confortável */
         #imageModal .modal-dialog {
             max-width: min(900px, 90vw);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #modalImage {
@@ -314,7 +327,7 @@
             max-height: 80vh;
             width: auto !important;
             height: auto !important;
-            margin: 0;
+            margin: 0 auto;
             border-radius: 8px;
         }
 
@@ -323,6 +336,9 @@
             background: transparent;
             border: none;
             box-shadow: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #imageModal .btn-close {
@@ -331,7 +347,9 @@
 
         .modal-image-wrapper {
             position: relative;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin: 0 auto;
         }
 
@@ -893,6 +911,18 @@
                 align-items: center;
             }
 
+            /* Manter os botões lado a lado no mobile (até 768px) apenas na seção hero */
+            .hero-content > .d-flex.gap-2 {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: center;
+                gap: 10px !important;
+            }
+            .hero-content > .d-flex.gap-2 .cta-button {
+                width: auto;
+                max-width: none;
+            }
+
             .hero-photo {
                 width: 90%;
                 max-width: 380px;
@@ -935,18 +965,23 @@
 
             /* Responsividade do carrossel */
             .gallery-item {
-                flex: 0 0 400px;
-                height: 300px;
+                flex: 0 0 500px;
+                height: 400px;
             }
 
             .carousel-overlay {
                 padding: 10px;
                 font-size: 0.8rem;
             }
+
+            .gallery-caption {
+                font-size: 0.8rem;
+                margin-top: 15px;
+            }
             
             /* Ajustar altura das imagens do carrossel em mobile */
             #consultorioCarousel .gallery-item img {
-                height: 400px !important;
+                height: 500px !important;
             }
 
             /* Responsividade da seção de avaliação */
@@ -967,7 +1002,8 @@
         @media (max-width: 480px) {
             .hero-section {
                 flex-direction: column;
-                padding: 20px 0;
+                padding: 5px 0;
+                min-height: auto;
             }
 
             .hero-content {
@@ -977,9 +1013,15 @@
 
             .hero-image {
                 flex: none;
-                height: 250px;
+                height: 410px;
+                object-position: top;
                 order: 1;
-                margin-bottom: 20px;
+            }
+            .row.min-vh-100 {
+                min-height: auto !important;
+            }
+            .min-vh-100 {
+                min-height: auto !important;
             }
 
             
@@ -1003,14 +1045,27 @@
                 max-width: 200px;
             }
 
+            /* Manter os botões lado a lado no mobile pequeno (até 480px) apenas na seção hero */
+            .hero-content > .d-flex.gap-2 {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: center;
+                gap: 8px !important;
+            }
+            .hero-content > .d-flex.gap-2 .cta-button {
+                width: auto;
+                max-width: none;
+            }
+
             .hero-photo {
                 width: 100%;
-                max-width: 320px;
+                max-width: 340px;
+                object-position: top;
             }
 
             .gallery-item {
-                flex: 0 0 200px;
-                height: 180px;
+                flex: 0 0 320px;
+                height: 300px;
             }
 
             .carousel-track {
@@ -1021,10 +1076,15 @@
                 padding: 8px;
                 font-size: 0.75rem;
             }
+
+            .gallery-caption {
+                font-size: 0.75rem;
+                margin-top: 12px;
+            }
             
             /* Ajustar altura das imagens do carrossel em mobile pequeno */
             #consultorioCarousel .gallery-item img {
-                height: 250px !important;
+                height: 320px !important;
             }
             
             /* Ajustar posição dos botões em mobile pequeno */
@@ -1232,7 +1292,7 @@
                 <div class="col-lg-6 d-flex flex-column justify-content-center hero-content">
                     <h1 class="hero-title">O olhar de uma protética, a arte de uma dentista.</h1>
                     <div class="d-flex gap-2">
-                        <button class="cta-button" onclick="location.href='#contact'">Como chegar?</button>
+                        <button class="cta-button" onclick="location.href='https://www.google.com/maps?ll=-22.883221,-47.195797&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&cid=15246601092578010492'">Como chegar?</button>
                         <button class="cta-button" onclick="scheduleConsultation()">Agende sua consulta</button>
                     </div>
                 </div>
@@ -1279,7 +1339,7 @@
                     </div>
                     <div class="specialty-content">
                         <h3>Clínico Geral</h3>
-                        <p>Prevenção e manutenção da saúde bucal. <a href="#contact" style="color: #c49b61; text-decoration: none;">Agende sua consulta →</a></p>
+                        <p>Prevenção e manutenção da saúde bucal. <a onclick="scheduleConsultation()" style="color: #c49b61; text-decoration: none;">Agende sua consulta →</a></p>
                     </div>
                 </div>
             </div>
@@ -1293,7 +1353,7 @@
                     </div>
                     <div class="specialty-content">
                         <h3>Dentística</h3>
-                        <p>Estética e restauração dental</p>
+                        <p>Estética e restauração dental.</p>
                     </div>
                 </div>
             </div>
@@ -1307,7 +1367,7 @@
                     </div>
                     <div class="specialty-content">
                         <h3>Prótese Dentária</h3>
-                        <p>Reposição de dentes com naturalidade e precisão. <a href="#contact" style="color: #c49b61; text-decoration: none;">Saiba mais →</a></p>
+                        <p>Reposição de dentes com naturalidade e precisão. </p>
                     </div>
                 </div>
             </div>
@@ -1321,7 +1381,7 @@
                     </div>
                     <div class="specialty-content">
                         <h3>Clareamento Dental</h3>
-                        <p>Técnicas seguras para um sorriso mais branco. <a href="#contact" style="color: #c49b61; text-decoration: none;">Consulte →</a></p>
+                        <p>Técnicas seguras para um sorriso mais branco. <a onclick="scheduleConsultation()" style="color: #c49b61; text-decoration: none;">Consulte →</a></p>
                     </div>
                 </div>
             </div>
@@ -1335,7 +1395,7 @@
                     </div>
                     <div class="specialty-content">
                         <h3>Bruxismo</h3>
-                        <p>Tratamentos modernos para proteger os dentes</p>
+                        <p>Tratamentos modernos para proteger os dentes.</p>
                     </div>
                 </div>
             </div>
@@ -1349,7 +1409,7 @@
                     </div>
                     <div class="specialty-content">
                         <h3>Periodontia</h3>
-                        <p>Saúde das gengivas e prevenção de perdas dentárias</p>
+                        <p>Saúde das gengivas e prevenção de perdas dentárias.</p>
                     </div>
                 </div>
             </div>
@@ -1363,7 +1423,7 @@
                     </div>
                     <div class="specialty-content">
                         <h3>Endodontia (Canal)</h3>
-                        <p>Preservação de dentes comprometidos</p>
+                        <p>Preservação de dentes comprometidos.</p>
                     </div>
                 </div>
             </div>
@@ -1378,7 +1438,7 @@
                     </div>
                     <div class="specialty-content">
                         <h3>Implantes</h3>
-                        <p>Soluções duradouras para dentes ausentes. <a href="#contact" style="color: #c49b61; text-decoration: none;">Agende avaliação →</a></p>
+                        <p>Soluções duradouras para dentes ausentes. <a onclick="scheduleConsultation()" style="color: #c49b61; text-decoration: none;">Agende avaliação →</a></p>
                     </div>
                 </div>
             </div>
@@ -1403,6 +1463,7 @@
                     <div class="gallery-item"><img src="public/consultorio/WhatsApp%20Image%202025-10-02%20at%2015.23.50.jpeg" alt="Equipamentos modernos"></div>
                 </div>
             </div>
+            <p class="gallery-caption">Clique na imagem para ampliar</p>
         </div>
     </section>
 
@@ -1621,9 +1682,15 @@
                         </div>
                         <div class="contact-item">
                             <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            <a href="https://www.instagram.com/dra.liciaraalves/" target="_blank">@dra.liciaraalves</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                             </svg>
-                            <p>(19) 95331-6535</p>
+                            <a href="https://wa.me/5519953316535?text=Olá! Gostaria de agendar uma consulta com a Dra. Liciara." target="_blank">(19) 95331-6535</a>
                         </div>
                         <button class="cta-button" onclick="openWhatsApp()" style="margin-top: 30px;">Agende sua consulta agora</button>
                     </div>
