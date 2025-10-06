@@ -111,8 +111,8 @@
 
         .hero-image {
             flex: 1;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            min-height: 100vh;
+            background: #fff;
+            min-height: 80vh;
             position: relative;
             display: flex;
             align-items: center;
@@ -120,36 +120,24 @@
             overflow: hidden;
         }
 
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23c49b61;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%23b8905a;stop-opacity:0.05" /></linearGradient></defs><rect width="400" height="600" fill="url(%23grad1)"/><circle cx="200" cy="300" r="150" fill="none" stroke="%23c49b61" stroke-width="2" opacity="0.3"/><circle cx="200" cy="300" r="100" fill="none" stroke="%23c49b61" stroke-width="1" opacity="0.2"/></svg>') center/cover;
-            opacity: 0.6;
+        .hero-photo {
+            width: 100%;
+            max-width: 520px;
+            height: auto;
+            object-fit: cover;
+            display: block;
         }
+
+      
 
         .hero-image-content {
             position: relative;
             z-index: 2;
             text-align: center;
-            color: #6b5b47;
+            color: #ffffff;
         }
 
-        .hero-image-placeholder {
-            width: 300px;
-            height: 400px;
-            background: linear-gradient(135deg, #c49b61 0%, #b8905a 100%);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 40px rgba(196, 155, 97, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
+       
 
         .hero-image-placeholder::before {
             content: '👩‍⚕️';
@@ -283,33 +271,71 @@
             overflow: hidden;
             margin-top: 40px;
             position: relative;
+            user-select: none;
+        }
+
+        .carousel-container:hover .carousel-track {
+            animation-play-state: paused;
         }
 
         .carousel-track {
             display: flex;
-            animation: scroll 5s linear infinite;
+            animation: scroll 20s linear infinite;
             gap: 20px;
+            width: max-content;
+            will-change: transform;
+            animation-play-state: running;
         }
 
-        .carousel-item {
+        .gallery-item {
             flex: 0 0 300px;
             height: 300px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: relative;
         }
 
-        .carousel-item img {
+        .gallery-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
-        .carousel-item:hover img {
-            transform: scale(1.05);
+        /* Modal imagem - tamanho responsivo confortável */
+        #imageModal .modal-dialog {
+            max-width: min(900px, 90vw);
         }
+
+        #modalImage {
+            display: block;
+            max-width: 90vw;
+            max-height: 80vh;
+            width: auto !important;
+            height: auto !important;
+            margin: 0;
+            border-radius: 8px;
+        }
+
+        /* Modal overlay sem bordas/fundo no conteúdo */
+        #imageModal .modal-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        #imageModal .btn-close {
+            z-index: 10;
+        }
+
+        .modal-image-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        
 
         .carousel-overlay {
             position: absolute;
@@ -332,9 +358,7 @@
             }
         }
 
-        .carousel-track:hover {
-            animation-play-state: paused;
-        }
+        
 
         /* Estilos customizados para o carrossel Bootstrap */
         #consultorioCarousel .carousel-control-prev-icon,
@@ -826,6 +850,8 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                align-items: center;
+                text-align: center;
             }
 
             .hero-title {
@@ -838,7 +864,6 @@
             .hero-image {
                 flex: 0 0 200px;
                 min-height: 300px;
-                background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -865,6 +890,12 @@
             .d-flex.gap-2 {
                 flex-direction: column;
                 gap: 10px !important;
+                align-items: center;
+            }
+
+            .hero-photo {
+                width: 90%;
+                max-width: 380px;
             }
 
             .section {
@@ -903,7 +934,7 @@
             }
 
             /* Responsividade do carrossel */
-            .carousel-item {
+            .gallery-item {
                 flex: 0 0 400px;
                 height: 300px;
             }
@@ -914,7 +945,7 @@
             }
             
             /* Ajustar altura das imagens do carrossel em mobile */
-            #consultorioCarousel .carousel-item img {
+            #consultorioCarousel .gallery-item img {
                 height: 400px !important;
             }
 
@@ -951,15 +982,10 @@
                 margin-bottom: 20px;
             }
 
-            .hero-image-placeholder {
-                width: 120px;
-                height: 160px;
-                border-radius: 12px;
-            }
+            
+            
 
-            .hero-image-placeholder::before {
-                font-size: 2rem;
-            }
+            
 
             .hero-title {
                 font-size: 1.5rem;
@@ -977,7 +1003,12 @@
                 max-width: 200px;
             }
 
-            .carousel-item {
+            .hero-photo {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .gallery-item {
                 flex: 0 0 200px;
                 height: 180px;
             }
@@ -992,7 +1023,7 @@
             }
             
             /* Ajustar altura das imagens do carrossel em mobile pequeno */
-            #consultorioCarousel .carousel-item img {
+            #consultorioCarousel .gallery-item img {
                 height: 250px !important;
             }
             
@@ -1195,7 +1226,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="d-flex min-vh-100 align-items-center">
+    <section class="d-flex min-vh-100 align-items-center hero-section">
         <div class="container-fluid">
             <div class="row min-vh-100">
                 <div class="col-lg-6 d-flex flex-column justify-content-center hero-content">
@@ -1206,13 +1237,22 @@
                     </div>
                 </div>
                 <div class="col-lg-6 hero-image">
-                    <div class="hero-image-content">
-                        <div class="hero-image-placeholder"></div>
-                    </div>
+                    <img src="public/FotoHero.jpeg" alt="Dra. Liciara Alves" class="hero-photo">
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-image-wrapper">
+                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <img id="modalImage" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- About Section -->
     <section class="section">
@@ -1351,29 +1391,17 @@
     <section class="section">
         <div class="container">
             <h2 class="section-title">Consultório</h2>
-            <div id="consultorioCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddceeee3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="d-block w-100" alt="Consultório odontológico moderno" style="height: 500px; object-fit: cover; border-radius: 12px;">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="d-block w-100" alt="Cadeira odontológica" style="height: 500px; object-fit: cover; border-radius: 12px;">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="d-block w-100" alt="Sala de espera" style="height: 500px; object-fit: cover; border-radius: 12px;">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="d-block w-100" alt="Equipamentos modernos" style="height: 500px; object-fit: cover; border-radius: 12px;">
-                    </div>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="gallery-item"><img src="public/consultorio/WhatsApp%20Image%202025-10-02%20at%2015.23.49%20(1).jpeg" alt="Consultório odontológico moderno"></div>
+                    <div class="gallery-item"><img src="public/consultorio/WhatsApp%20Image%202025-10-02%20at%2015.23.49.jpeg" alt="Cadeira odontológica"></div>
+                    <div class="gallery-item"><img src="public/consultorio/WhatsApp%20Image%202025-10-02%20at%2015.23.50%20(1).jpeg" alt="Sala de espera"></div>
+                    <div class="gallery-item"><img src="public/consultorio/WhatsApp%20Image%202025-10-02%20at%2015.23.50.jpeg" alt="Equipamentos modernos"></div>
+                    <div class="gallery-item"><img src="public/consultorio/WhatsApp%20Image%202025-10-02%20at%2015.23.49%20(1).jpeg" alt="Consultório odontológico moderno"></div>
+                    <div class="gallery-item"><img src="public/consultorio/WhatsApp%20Image%202025-10-02%20at%2015.23.49.jpeg" alt="Cadeira odontológica"></div>
+                    <div class="gallery-item"><img src="public/consultorio/WhatsApp%20Image%202025-10-02%20at%2015.23.50%20(1).jpeg" alt="Sala de espera"></div>
+                    <div class="gallery-item"><img src="public/consultorio/WhatsApp%20Image%202025-10-02%20at%2015.23.50.jpeg" alt="Equipamentos modernos"></div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#consultorioCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#consultorioCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
     </section>
@@ -1613,7 +1641,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-quote">"O olhar de uma protética, a arte de uma dentista."</div>
-            <div class="footer-info">© 2024 Dra. Liciara Alves - Todos os direitos reservados</div>
+            <div class="footer-info">© 2025 Dra. Liciara Alves - Todos os direitos reservados</div>
         </div>
     </footer>
 
@@ -1677,6 +1705,17 @@
             section.style.transform = 'translateY(30px)';
             section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(section);
+        });
+
+        // Modal de imagem para a galeria
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', () => {
+                const modalImg = document.getElementById('modalImage');
+                modalImg.src = img.src;
+                modalImg.alt = img.alt || '';
+                const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+                modal.show();
+            });
         });
     </script>
     <!-- Bootstrap JavaScript -->
