@@ -15,7 +15,7 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Dra. Liciara Alves - Dentista em Hortolândia | Clínico Geral, Prótese">
     <meta property="og:description" content="Dra. Liciara Alves - Dentista em Hortolândia. Especialidades: Clínico Geral, Prótese Dentária, Dentística, Clareamento, Implantes. Agende sua consulta!">
-    <meta property="og:image" content="https://www.liciaraalvesodontologia.com.br/public/logotipo_transparente1.png">
+    <meta property="og:image" content="https://pub-f92ebb28503945ca9b431d00d52bf5d9.r2.dev/LiciaraLogo.png">
     <meta property="og:url" content="https://www.liciaraalvesodontologia.com.br/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Dra. Liciara Alves - Dentista">
@@ -25,13 +25,14 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Dra. Liciara Alves - Dentista em Hortolândia">
     <meta name="twitter:description" content="Dentista em Hortolândia. Especialidades: Clínico Geral, Prótese Dentária, Dentística, Clareamento, Implantes.">
-    <meta name="twitter:image" content="https://www.liciaraalvesodontologia.com.br/public/logotipo_transparente1.png">
+    <meta name="twitter:image" content="https://pub-f92ebb28503945ca9b431d00d52bf5d9.r2.dev/LiciaraLogo.png">
     
     <!-- Additional SEO Meta Tags -->
     <meta name="geo.region" content="BR-SP">
     <meta name="geo.placename" content="Hortolândia">
     <meta name="geo.position" content="-22.883216;-47.198378">
     <meta name="ICBM" content="-22.883216, -47.198378">
+    <link rel="icon" type="image/x-icon" href="https://s3.us-west-2.amazonaws.com/nextlevel-s3-uploads/uploads/images/sellers/1695_logotipo_transparente2.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -42,6 +43,16 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
@@ -50,25 +61,135 @@
         }
 
         .header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(92,74,48,0.06);
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 15px 0;
+            padding: 14px 0;
+            transition: padding 0.4s ease, border-color 0.4s ease;
+        }
+
+        .header.scrolled {
+            padding: 8px 0;
+            border-bottom-color: rgba(92,74,48,0.1);
         }
 
         .header .container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
         }
 
         .header-logo {
-            max-height: 60px;
+            height: 58px;
             width: auto;
+            max-height: 58px;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            transition: height 0.4s ease;
+        }
+
+        .header.scrolled .header-logo {
+            height: 44px;
+            max-height: 44px;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .header-nav a {
+            color: #4a3d2e;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            position: relative;
+            transition: color 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .header-nav a:not(.nav-cta)::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 16px;
+            right: 16px;
+            height: 1px;
+            background: #D4952E;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .header-nav a:not(.nav-cta):hover {
+            color: #D4952E;
+        }
+
+        .header-nav a:not(.nav-cta):hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .header-nav .nav-cta {
+            color: #D4952E;
+            font-weight: 500;
+            padding: 9px 24px;
+            border: 1.5px solid #D4952E;
+            border-radius: 2px;
+            margin-left: 20px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            transition: all 0.3s ease;
+        }
+
+        .header-nav .nav-cta:hover {
+            background: #D4952E;
+            color: white;
+        }
+
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px 4px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: #4a3d2e;
+            margin: 5px 0;
+            transition: all 0.35s ease;
+        }
+
+        .menu-toggle span:nth-child(1) { width: 22px; }
+        .menu-toggle span:nth-child(2) { width: 16px; margin-left: auto; }
+        .menu-toggle span:nth-child(3) { width: 22px; }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            width: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
         }
 
         .hero-section {
@@ -83,7 +204,7 @@
             font-family: 'Merriweather', serif;
             font-size: 3.5rem;
             font-weight: 700;
-            color: #6b5b47;
+            color: #5C4A30;
             line-height: 1.2;
             margin-bottom: 40px;
             max-width: 100%;
@@ -92,7 +213,7 @@
         }
 
         .cta-button {
-            background: #c49b61;
+            background: #D4952E;
             color: white;
             padding: 16px 32px;
             border: none;
@@ -105,7 +226,7 @@
         }
 
         .cta-button:hover {
-            background: #b8905a;
+            background: #C48A2F;
             transform: translateY(-2px);
         }
 
@@ -172,98 +293,237 @@
             font-family: 'Merriweather', serif;
             font-size: 2.5rem;
             font-weight: 700;
-            color: #c49b61;
+            color: #D4952E;
             text-align: center;
             margin-bottom: 40px;
             letter-spacing: -0.01em;
         }
 
-        .about-text {
+        .about-intro {
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #666;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 50px;
             line-height: 1.8;
+            font-style: italic;
         }
 
-        .about-text strong {
-            color: #333;
-        }
-
-        .specialties-grid {
+        .about-blocks {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .specialty-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
+        .about-block {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            border-left: 4px solid #D4952E;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .specialty-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #c49b61 0%, #b8905a 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            box-shadow: 0 4px 15px rgba(196, 155, 97, 0.3);
-            transition: all 0.3s ease;
+        .about-block:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .about-block h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.2rem;
+            color: #5C4A30;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .about-block p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .about-cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* Carrossel de Tratamentos */
+        .treatments-carousel-wrapper {
             position: relative;
+            padding: 0 50px;
+            margin-top: 50px;
+        }
+
+        .treatments-carousel {
             overflow: hidden;
         }
 
-        .specialty-icon::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
+        .treatments-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .specialty-icon:hover::before {
-            opacity: 1;
-            transform: rotate(45deg) translate(50%, 50%);
+        .treatment-card {
+            flex: 0 0 calc(100% / 3);
+            padding: 0 15px;
+            box-sizing: border-box;
         }
 
-        .specialty-icon:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(196, 155, 97, 0.4);
+        .treatment-card-inner {
+            text-align: center;
+            padding: 30px 20px 35px;
+            background: #fff;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .specialty-icon svg {
-            width: 28px;
-            height: 28px;
-            color: white;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        .treatment-card-inner:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+
+        .treatment-icon-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f5efe8 0%, #ece3d5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(212, 149, 46, 0.15);
             transition: all 0.3s ease;
         }
 
-        .specialty-icon:hover svg {
-            transform: scale(1.1);
+        .treatment-card-inner:hover .treatment-icon-circle {
+            box-shadow: 0 6px 25px rgba(212, 149, 46, 0.25);
+            transform: scale(1.03);
         }
 
-        .specialty-content h3 {
-            font-size: 1.3rem;
-            color: #333;
-            margin-bottom: 8px;
-            font-weight: 600;
+        .treatment-icon-circle svg {
+            width: 56px;
+            height: 56px;
+            color: #D4952E;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
-        .specialty-content p {
+        .treatment-icon-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .treatment-card-inner h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.15rem;
+            color: #5C4A30;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .treatment-card-inner p {
             color: #666;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .treatment-btn {
+            display: inline-block;
+            background: #5C4A30;
+            color: white;
+            padding: 10px 28px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        .treatment-btn:hover {
+            background: #D4952E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 149, 46, 0.3);
+            color: white;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #D4952E;
+            color: #D4952E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 0;
+        }
+
+        .carousel-arrow:hover {
+            background: #D4952E;
+            color: white;
+            box-shadow: 0 4px 15px rgba(212, 149, 46, 0.3);
+        }
+
+        .carousel-arrow svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .carousel-arrow-prev {
+            left: 0;
+        }
+
+        .carousel-arrow-next {
+            right: 0;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 30px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .carousel-dot.active {
+            background: #D4952E;
+            transform: scale(1.2);
         }
 
             /* Carrossel de fotos */
@@ -381,7 +641,7 @@
         /* Estilos customizados para o carrossel Bootstrap */
         #consultorioCarousel .carousel-control-prev-icon,
         #consultorioCarousel .carousel-control-next-icon {
-            background-color: rgba(196, 155, 97, 0.8);
+            background-color: rgba(212, 149, 46, 0.8);
             border-radius: 50%;
             width: 35px;
             height: 35px;
@@ -406,7 +666,7 @@
         
         #consultorioCarousel .carousel-control-prev:hover,
         #consultorioCarousel .carousel-control-next:hover {
-            background-color: rgba(196, 155, 97, 1);
+            background-color: rgba(212, 149, 46, 1);
         }
         
         #consultorioCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
@@ -430,7 +690,7 @@
 
         .differential-item::before {
             content: "•";
-            color: #c49b61;
+            color: #D4952E;
             font-size: 1.5rem;
             font-weight: bold;
         }
@@ -610,7 +870,7 @@
 
         /* Seção de avaliação Google */
         .review-section {
-            background: linear-gradient(135deg, #c49b61 0%, #b8905a 100%);
+            background: linear-gradient(135deg, #D4952E 0%, #C48A2F 100%);
             color: white;
             text-align: center;
             position: relative;
@@ -652,7 +912,7 @@
 
         .google-review-button {
             background: white;
-            color: #c49b61;
+            color: #D4952E;
             padding: 16px 32px;
             border: none;
             border-radius: 50px;
@@ -744,16 +1004,6 @@
             height: 32px;
         }
 
-        /* Estado Instagram para o botão flutuante (mesmo elemento, outra aparência) */
-        .whatsapp-button.ig {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            box-shadow: 0 4px 12px rgba(220, 39, 67, 0.3);
-        }
-        .whatsapp-button.ig:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(220, 39, 67, 0.4);
-        }
-
         .contact-section {
             background: #f8f8f8;
         }
@@ -769,7 +1019,7 @@
             font-family: 'Merriweather', serif;
             font-size: 1.8rem;
             font-weight: 700;
-            color: #c49b61;
+            color: #D4952E;
             margin-bottom: 30px;
             letter-spacing: -0.01em;
         }
@@ -784,7 +1034,7 @@
         .contact-item svg {
             width: 20px;
             height: 20px;
-            color: #c49b61;
+            color: #D4952E;
             flex-shrink: 0;
         }
 
@@ -795,7 +1045,7 @@
         }
 
         .footer {
-            background: #6b5b47;
+            background: #5C4A30;
             color: white;
             text-align: center;
             padding: 40px 60px;
@@ -813,6 +1063,33 @@
         .footer-info {
             color: #d4c4a8;
             font-size: 0.9rem;
+        }
+
+        .footer-social {
+            margin: 20px 0;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        .footer-social a svg {
+            width: 22px;
+            height: 22px;
         }
 
         .testimonial-content {
@@ -857,18 +1134,91 @@
             body {
                 padding-top: 80px;
             }
-            
+
             .header {
                 padding: 10px 0;
             }
-            
+
+            .header .container {
+                padding: 0 20px;
+            }
+
             .header-logo {
-                max-height: 50px;
+                height: 48px;
+                max-height: 48px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .header-nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                height: 100dvh;
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 100px 40px 40px;
+                gap: 0;
+                transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                z-index: 1000;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .header-nav.open {
+                right: 0;
+            }
+
+            .header-nav a:not(.nav-cta) {
+                font-size: 1.1rem;
+                padding: 16px 0;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                font-weight: 300;
+                color: #4a3d2e;
+                border-bottom: 1px solid rgba(92,74,48,0.08);
+                width: 200px;
+                text-align: center;
+            }
+
+            .header-nav a:not(.nav-cta)::after {
+                display: none;
+            }
+
+            .header-nav .nav-cta {
+                margin-left: 0;
+                margin-top: 30px;
+                text-align: center;
+                padding: 14px 40px;
+                font-size: 0.85rem;
+                border-radius: 2px;
+            }
+
+            .menu-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.3);
+                z-index: 999;
+            }
+
+            .menu-overlay.active {
+                display: block;
             }
             
             .hero-section {
                 flex-direction: row;
-                min-height: auto;
+                min-height: auto !important;
+                height: auto !important;
                 padding: 40px 0;
             }
 
@@ -942,9 +1292,12 @@
                 padding: 60px 30px;
             }
 
-            .specialties-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
+            .treatment-card {
+                flex: 0 0 50%;
+            }
+
+            .treatments-carousel-wrapper {
+                padding: 0 40px;
             }
 
             .testimonial-content {
@@ -1010,6 +1363,34 @@
         }
 
         @media (max-width: 480px) {
+            .treatment-card {
+                flex: 0 0 100%;
+            }
+
+            .treatments-carousel-wrapper {
+                padding: 0 35px;
+            }
+
+            .treatment-icon-circle {
+                width: 110px;
+                height: 110px;
+            }
+
+            .treatment-icon-circle svg {
+                width: 44px;
+                height: 44px;
+            }
+
+            .carousel-arrow {
+                width: 36px;
+                height: 36px;
+            }
+
+            .carousel-arrow svg {
+                width: 18px;
+                height: 18px;
+            }
+
             .hero-section {
                 flex-direction: column;
                 padding: 5px 0;
@@ -1113,8 +1494,8 @@
 
             /* Responsividade da seção de avaliação para mobile */
             .review-stats {
-                gap: 15px;
-                flex-direction: column;
+                gap: 20px;
+                flex-direction: row;
             }
 
             .review-stat-number {
@@ -1168,8 +1549,8 @@
         "name": "Dra. Liciara Alves - Dentista",
         "description": "Clínica odontológica especializada em clínico geral, prótese dentária, dentística, clareamento dental, implantes e outras especialidades odontológicas em Hortolândia/SP.",
         "url": "https://www.liciaraalvesodontologia.com.br/",
-        "logo": "https://www.liciaraalvesodontologia.com.br/public/logotipo_transparente1.png",
-        "image": "https://www.liciaraalvesodontologia.com.br/public/logotipo_transparente1.png",
+        "logo": "https://pub-f92ebb28503945ca9b431d00d52bf5d9.r2.dev/LiciaraLogo.png",
+        "image": "https://pub-f92ebb28503945ca9b431d00d52bf5d9.r2.dev/LiciaraLogo.png",
         "telephone": "+55-19-95331-6535",
         "email": "contato@draliciara.com.br",
         "address": {
@@ -1289,11 +1670,25 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="header" id="header">
         <div class="container">
-            <img src="public/logotipo_transparente1.png" alt="Dra. Liciara Alves - Dentista" class="header-logo">
+            <a href="#"><img src="https://pub-f92ebb28503945ca9b431d00d52bf5d9.r2.dev/LiciaraLogo.png" alt="Dra. Liciara Alves - Dentista" class="header-logo"></a>
+            <nav class="header-nav" id="headerNav">
+                <a href="#about">Sobre</a>
+                <a href="#treatments">Tratamentos</a>
+                <a href="#gallery">Consultório</a>
+                <a href="#reviews">Avaliações</a>
+                <a href="#contact">Contato</a>
+                <a href="javascript:void(0)" class="nav-cta" onclick="scheduleConsultation()">Agende sua consulta</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <!-- Hero Section -->
     <section class="d-flex min-vh-100 align-items-center hero-section">
@@ -1325,140 +1720,150 @@
     </div>
 
     <!-- About Section -->
-    <section class="section">
+    <section class="section" id="about">
         <div class="container">
-            <h2 class="section-title">Sobre a Doutora</h2>
-            <p class="about-text">
-                Com mais de 23 anos de experiência na área odontológica, a Dra. Liciara Alves traz em sua trajetória o diferencial de quem vivenciou todos os setores de um consultório, desde o atendimento clínico  até a prótese dentária. Essa vivência completa garante um olhar atento aos detalhes, unindo técnica, empatia e excelência no cuidado com cada paciente.
-            </p>
+            <h2 class="section-title">Atendimento exclusivo, com hora marcada</h2>
+            <p class="about-intro">A experiência de quem foi protética por muitos anos e hoje traz esse olhar diferenciado para a odontologia: atenção ao detalhe, cuidado com a estética e compromisso com cada sorriso.</p>
+
+            <div class="about-blocks">
+                <div class="about-block">
+                    <h3>Um cuidado que começa na escuta</h3>
+                    <p>Aqui, cada paciente é atendido de forma individual, com hora marcada e sem pressa. Acredito que um bom tratamento começa com uma boa conversa, onde entendo suas necessidades, expectativas e histórico de saúde bucal.</p>
+                </div>
+
+                <div class="about-block">
+                    <h3>Sobre a Doutora</h3>
+                    <p>Com 23 anos de atuação na área odontológica, a Dra. Liciara Alves traz em sua trajetória o diferencial de quem vivenciou todos os setores de um consultório, desde o atendimento clínico até a prótese dentária. Essa vivência completa garante um olhar atento aos detalhes, unindo técnica, empatia e excelência no cuidado com cada paciente.</p>
+                </div>
+
+                <div class="about-block">
+                    <h3>Compromisso com biossegurança</h3>
+                    <p>Seguimos rigorosamente todos os protocolos de biossegurança, garantindo um ambiente seguro e confiável para você e sua família.</p>
+                </div>
+
+                <div class="about-block">
+                    <h3>Atendimento que gera confiança</h3>
+                    <p>Mais do que tratar dentes, construímos relações de confiança. Muitos dos nossos pacientes nos acompanham há anos e nos indicam para familiares e amigos, o que é o nosso maior reconhecimento.</p>
+                </div>
+            </div>
+
+            <div class="about-cta">
+                <button class="cta-button" onclick="scheduleConsultation()">Agende sua consulta</button>
+            </div>
         </div>
     </section>
 
-    <!-- Specialties Section -->
-    <section class="section">
+    <!-- Treatments Carousel Section -->
+    <section class="section" id="treatments">
         <div class="container">
-            <h2 class="section-title">Especialidades</h2>
-            <div class="row g-4">
-            
-            <div class="col-lg-4 col-md-6">
-                <div class="specialty-item">
-                    <div class="specialty-icon">
-                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.86,2C15.2,2,13.23,3.5,12,5.3C10.77,3.5,8.8,2,6.14,2C2.75,2,2,4.75,2,7.5C2,11.75,6.5,14.75,12,21.5C17.5,14.75,22,11.75,22,7.5C22,4.75,21.25,2,17.86,2Z" transform="translate(0 -1.5) scale(1.1)"/>
-                        </svg>
-                    </div>
-                    <div class="specialty-content">
-                        <h3>Clínico Geral</h3>
-                        <p>Prevenção e manutenção da saúde bucal. <a onclick="scheduleConsultation()" style="color: #c49b61; text-decoration: none;">Agende sua consulta →</a></p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col-lg-4 col-md-6">
-                <div class="specialty-item">
-                    <div class="specialty-icon">
-                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16.5,9.5l1.2-2.5l2.5-1.2l-2.5-1.2l-1.2-2.5l-1.2,2.5l-2.5,1.2l2.5,1.2l1.2,2.5z M6,22c-2.2,0-4-1.8-4-4c0-3.5,3.5-6.5,8-11.5c4.5,5,8,8,8,11.5c0,2.2-1.8,4-4,4H6z"/>
-                        </svg>
-                    </div>
-                    <div class="specialty-content">
-                        <h3>Dentística</h3>
-                        <p>Estética e restauração dental.</p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col-lg-4 col-md-6">
-                <div class="specialty-item">
-                    <div class="specialty-icon">
-                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 7h-3V5h-2v2h-4V5H9v2H6V5H4v2H1v10h22V7h-2zm-9 8H4v-4h8v4zm8 0h-6v-4h6v4z"/>
-                        </svg>
-                    </div>
-                    <div class="specialty-content">
-                        <h3>Prótese Dentária</h3>
-                        <p>Reposição de dentes com naturalidade e precisão. </p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col-lg-4 col-md-6">
-                <div class="specialty-item">
-                    <div class="specialty-icon">
-                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2.5C7.5 7.5 4 10.5 4 14c0 2.2 1.8 4 4 4h8c2.2 0 4-1.8 4-4c0-3.5-3.5-6.5-8-11.5z M18.5 2.5l-1.2 2.5l-2.5 1.2l2.5 1.2l1.2 2.5l1.2-2.5l2.5-1.2l-2.5-1.2z M17 11h-2v2h-2v-2H9v-2h2V7h2v2h2v2z"/>
-                        </svg>
-                    </div>
-                    <div class="specialty-content">
-                        <h3>Clareamento Dental</h3>
-                        <p>Técnicas seguras para um sorriso mais branco. <a onclick="scheduleConsultation()" style="color: #c49b61; text-decoration: none;">Consulte →</a></p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col-lg-4 col-md-6">
-                <div class="specialty-item">
-                    <div class="specialty-icon">
-                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1.07 15.42C8.36 15.68 6 13.06 6 10c0-1.09.43-2.12 1.18-2.88L16.88 16.82c-.76.75-1.79 1.18-2.88 1.18-.9 0-1.74-.29-2.45-.78z"/>
-                        </svg>
-                    </div>
-                    <div class="specialty-content">
-                        <h3>Bruxismo</h3>
-                        <p>Tratamentos modernos para proteger os dentes.</p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col-lg-4 col-md-6">
-                <div class="specialty-item">
-                    <div class="specialty-icon">
-                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C8.69 2 6 4.69 6 8c0 2.76 2.03 5.08 4.7 5.79V22h2.6V13.79C15.97 13.08 18 10.76 18 8c0-3.31-2.69-6-6-6zm-1.5 8h3v2h-3v-2z"/>
-                        </svg>
-                    </div>
-                    <div class="specialty-content">
-                        <h3>Periodontia</h3>
-                        <p>Saúde das gengivas e prevenção de perdas dentárias.</p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col-lg-4 col-md-6">
-                <div class="specialty-item">
-                    <div class="specialty-icon">
-                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2c-4.42 0-8 3.58-8 8c0 3.14 1.82 5.83 4.4 7.13V22h7.2v-4.87c2.58-1.3 4.4-4 4.4-7.13c0-4.42-3.58-8-8-8zm-1.2 14.4V14h2.4v2.4h-2.4z"/>
-                        </svg>
-                    </div>
-                    <div class="specialty-content">
-                        <h3>Endodontia (Canal)</h3>
-                        <p>Preservação de dentes comprometidos.</p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col-lg-4 col-md-6">
-                <div class="specialty-item">
-                    <div class="specialty-icon">
-                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16 13h-4v4h-2v-4H6v-2h4V7h2v4h4v2zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-                            <path d="M12,7c-0.55,0-1,0.45-1,1v3H8c-0.55,0-1,0.45-1,1s0.45,1,1,1h3v3c0,0.55,0.45,1,1,1s1-0.45,1-1v-3h3c0.55,0,1-0.45,1-1 s-0.45-1-1-1h-3V8C13,7.45,12.55,7,12,7z" opacity="0.1"/>
-                        </svg>
-                    </div>
-                    <div class="specialty-content">
-                        <h3>Implantes</h3>
-                        <p>Soluções duradouras para dentes ausentes. <a onclick="scheduleConsultation()" style="color: #c49b61; text-decoration: none;">Agende avaliação →</a></p>
+            <h2 class="section-title">Tratamentos</h2>
+            <div class="treatments-carousel-wrapper">
+                <button class="carousel-arrow carousel-arrow-prev" onclick="treatmentsCarousel.prev()" aria-label="Anterior">
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="treatments-carousel">
+                    <div class="treatments-track" id="treatmentsTrack">
+
+                        <div class="treatment-card">
+                            <div class="treatment-card-inner">
+                                <div class="treatment-icon-circle">
+                                    <img src="https://pub-f92ebb28503945ca9b431d00d52bf5d9.r2.dev/Gemini_Generated_Image_vil9z1vil9z1vil9.png" alt="Clínico Geral" loading="lazy">
+                                </div>
+                                <h3>Clínico Geral</h3>
+                                <p>Prevenção, diagnóstico e manutenção da saúde bucal, com atendimento individualizado e acompanhamento contínuo.</p>
+                                <button class="treatment-btn" onclick="scheduleConsultation()">Saiba mais</button>
+                            </div>
+                        </div>
+
+                        <div class="treatment-card">
+                            <div class="treatment-card-inner">
+                                <div class="treatment-icon-circle">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16.5,9.5l1.2-2.5l2.5-1.2l-2.5-1.2l-1.2-2.5l-1.2,2.5l-2.5,1.2l2.5,1.2l1.2,2.5z M6,22c-2.2,0-4-1.8-4-4c0-3.5,3.5-6.5,8-11.5c4.5,5,8,8,8,11.5c0,2.2-1.8,4-4,4H6z"/></svg>
+                                </div>
+                                <h3>Dentística</h3>
+                                <p>Estética e restauração dental com foco na função, harmonia e preservação da estrutura dos dentes.</p>
+                                <button class="treatment-btn" onclick="scheduleConsultation()">Saiba mais</button>
+                            </div>
+                        </div>
+
+                        <div class="treatment-card">
+                            <div class="treatment-card-inner">
+                                <div class="treatment-icon-circle">
+                                    <img src="https://images.unsplash.com/photo-1660737217679-6ddd9768654a?w=400&h=400&fit=crop&auto=format" alt="Prótese Dentária" loading="lazy">
+                                </div>
+                                <h3>Prótese Dentária</h3>
+                                <p>Reabilitação oral com precisão e naturalidade, incluindo próteses fixas, removíveis e prótese protocolo, sempre com planejamento personalizado.</p>
+                                <button class="treatment-btn" onclick="scheduleConsultation()">Saiba mais</button>
+                            </div>
+                        </div>
+
+                        <div class="treatment-card">
+                            <div class="treatment-card-inner">
+                                <div class="treatment-icon-circle">
+                                    <img src="https://images.unsplash.com/photo-1655807946138-811bb2340d34?w=400&h=400&fit=crop&auto=format" alt="Clareamento Dental" loading="lazy">
+                                </div>
+                                <h3>Clareamento Dental</h3>
+                                <p>Técnicas seguras e supervisionadas para um sorriso mais branco, respeitando a saúde dos dentes e gengivas.</p>
+                                <button class="treatment-btn" onclick="scheduleConsultation()">Saiba mais</button>
+                            </div>
+                        </div>
+
+                        <div class="treatment-card">
+                            <div class="treatment-card-inner">
+                                <div class="treatment-icon-circle">
+                                    <img src="https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?w=400&h=400&fit=crop&auto=format" alt="Bruxismo" loading="lazy">
+                                </div>
+                                <h3>Bruxismo</h3>
+                                <p>Avaliação e tratamento do bruxismo para proteção dos dentes, alívio dos sintomas e melhora da qualidade de vida.</p>
+                                <button class="treatment-btn" onclick="scheduleConsultation()">Saiba mais</button>
+                            </div>
+                        </div>
+
+                        <div class="treatment-card">
+                            <div class="treatment-card-inner">
+                                <div class="treatment-icon-circle">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.69 2 6 4.69 6 8c0 2.76 2.03 5.08 4.7 5.79V22h2.6V13.79C15.97 13.08 18 10.76 18 8c0-3.31-2.69-6-6-6zm-1.5 8h3v2h-3v-2z"/></svg>
+                                </div>
+                                <h3>Periodontia</h3>
+                                <p>Cuidado completo da saúde gengival, com prevenção e tratamento das doenças periodontais.</p>
+                                <button class="treatment-btn" onclick="scheduleConsultation()">Saiba mais</button>
+                            </div>
+                        </div>
+
+                        <div class="treatment-card">
+                            <div class="treatment-card-inner">
+                                <div class="treatment-icon-circle">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2c-4.42 0-8 3.58-8 8c0 3.14 1.82 5.83 4.4 7.13V22h7.2v-4.87c2.58-1.3 4.4-4 4.4-7.13c0-4.42-3.58-8-8-8zm-1.2 14.4V14h2.4v2.4h-2.4z"/></svg>
+                                </div>
+                                <h3>Endodontia (Canal)</h3>
+                                <p>Tratamento endodôntico criterioso para preservação de dentes comprometidos, com segurança e conforto.</p>
+                                <button class="treatment-btn" onclick="scheduleConsultation()">Saiba mais</button>
+                            </div>
+                        </div>
+
+                        <div class="treatment-card">
+                            <div class="treatment-card-inner">
+                                <div class="treatment-icon-circle">
+                                    <img src="https://images.unsplash.com/photo-1468493858157-0da44aaf1d13?w=400&h=400&fit=crop&auto=format" alt="Implantes" loading="lazy">
+                                </div>
+                                <h3>Implantes</h3>
+                                <p>Planejamento e instalação de implantes dentários, possibilitando reabilitações funcionais e estéticas, inclusive com prótese protocolo.</p>
+                                <button class="treatment-btn" onclick="scheduleConsultation()">Saiba mais</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </div>
-    
+                <button class="carousel-arrow carousel-arrow-next" onclick="treatmentsCarousel.next()" aria-label="Próximo">
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+                </button>
+                <div class="carousel-dots" id="carouselDots"></div>
             </div>
         </div>
     </section>
 
     <!-- Gallery Section -->
-    <section class="section">
+    <section class="section" id="gallery">
         <div class="container">
             <h2 class="section-title">Consultório</h2>
             <div class="carousel-container">
@@ -1486,7 +1891,7 @@
     </section>
 
     <!-- Google Reviews Section -->
-    <section class="section testimonials-section">
+    <section class="section testimonials-section" id="reviews">
         <div class="container">
             <div class="google-reviews-header">
                 <div class="google-logo">
@@ -1686,7 +2091,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section contact-section">
+    <section class="section contact-section" id="contact">
         <div class="container">
             <h2 class="section-title">Contato / Localização</h2>
             <div class="row">
@@ -1726,6 +2131,13 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-quote">"O olhar de uma protética, a arte de uma dentista."</div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/dra.liciaraalves/" target="_blank" aria-label="Seguir no Instagram">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+            </div>
             <div class="footer-info">© 2025 Dra. Liciara Alves - Todos os direitos reservados</div>
         </div>
     </footer>
@@ -1738,6 +2150,33 @@
     </a>
 
     <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const headerNav = document.getElementById('headerNav');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            headerNav.classList.toggle('open');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = headerNav.classList.contains('open') ? 'hidden' : '';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        // Close menu on nav link click
+        headerNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (headerNav.classList.contains('open')) toggleMenu();
+            });
+        });
+
+        // Header shrink on scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
         function scheduleConsultation() {
             // Redirect to WhatsApp
             window.open('https://wa.me/5519953316535?text=Olá! Gostaria de agendar uma consulta com a Dra. Liciara.', '_blank');
@@ -1792,6 +2231,88 @@
             observer.observe(section);
         });
 
+        // Carrossel de Tratamentos
+        const treatmentsCarousel = (function() {
+            const track = document.getElementById('treatmentsTrack');
+            const cards = track.querySelectorAll('.treatment-card');
+            const dotsContainer = document.getElementById('carouselDots');
+            const totalCards = cards.length;
+            let currentIndex = 0;
+            let visibleCards = 3;
+            let startX = 0;
+            let isDragging = false;
+
+            function getVisibleCards() {
+                if (window.innerWidth <= 480) return 1;
+                if (window.innerWidth <= 768) return 2;
+                return 3;
+            }
+
+            function getMaxIndex() {
+                return Math.max(0, totalCards - visibleCards);
+            }
+
+            function buildDots() {
+                dotsContainer.innerHTML = '';
+                const maxIdx = getMaxIndex();
+                for (let i = 0; i <= maxIdx; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'carousel-dot' + (i === currentIndex ? ' active' : '');
+                    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+                    dot.addEventListener('click', () => goTo(i));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function updatePosition() {
+                const pct = (currentIndex * 100) / visibleCards;
+                track.style.transform = 'translateX(-' + pct + '%)';
+                dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+                    d.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            function goTo(index) {
+                currentIndex = Math.max(0, Math.min(index, getMaxIndex()));
+                updatePosition();
+            }
+
+            function next() {
+                goTo(currentIndex + 1);
+            }
+
+            function prev() {
+                goTo(currentIndex - 1);
+            }
+
+            function onResize() {
+                visibleCards = getVisibleCards();
+                if (currentIndex > getMaxIndex()) currentIndex = getMaxIndex();
+                buildDots();
+                updatePosition();
+            }
+
+            // Touch/swipe support
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+            }, { passive: true });
+
+            track.addEventListener('touchend', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                const diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                    diff > 0 ? next() : prev();
+                }
+            }, { passive: true });
+
+            window.addEventListener('resize', onResize);
+            onResize();
+
+            return { next, prev, goTo };
+        })();
+
         // Modal de imagem para a galeria
         document.querySelectorAll('.gallery-item img').forEach(img => {
             img.addEventListener('click', () => {
@@ -1803,40 +2324,6 @@
             });
         });
 
-        // Alternância do botão flutuante entre WhatsApp e Instagram
-        (function setupFloatingButtonAlternation() {
-            const fab = document.querySelector('.whatsapp-button');
-            if (!fab) return;
-
-            const whatsappHref = 'https://wa.me/5519953316535?text=Olá! Gostaria de agendar uma consulta com a Dra. Liciara.';
-            const instagramHref = 'https://www.instagram.com/dra.liciaraalves/';
-
-            const whatsappIcon = '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>';
-            const instagramIcon = '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>';
-
-            let showWhatsApp = true;
-
-            function renderState() {
-                if (showWhatsApp) {
-                    fab.classList.remove('ig');
-                    fab.href = whatsappHref;
-                    fab.setAttribute('aria-label', 'Falar no WhatsApp');
-                    fab.innerHTML = whatsappIcon;
-                } else {
-                    fab.classList.add('ig');
-                    fab.href = instagramHref;
-                    fab.setAttribute('aria-label', 'Abrir Instagram');
-                    fab.innerHTML = instagramIcon;
-                }
-            }
-
-            // Alterna a cada 7 segundos
-            renderState();
-            setInterval(() => {
-                showWhatsApp = !showWhatsApp;
-                renderState();
-            }, 7000);
-        })();
     </script>
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
